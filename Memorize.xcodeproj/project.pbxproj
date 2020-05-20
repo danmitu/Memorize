@@ -46,6 +46,7 @@
 		923D5D7D2475ECFB00012F4C = {
 			isa = PBXGroup;
 			children = (
+				920BB5512475F11D00C23B3C /* README.md */,
 				923D5D882475ECFB00012F4C /* Memorize */,
 				923D5D872475ECFB00012F4C /* Products */,
 			);
@@ -62,7 +63,6 @@
 		923D5D882475ECFB00012F4C /* Memorize */ = {
 			isa = PBXGroup;
 			children = (
-				920BB5512475F11D00C23B3C /* README.md */,
 				923D5D892475ECFB00012F4C /* AppDelegate.swift */,
 				923D5D8B2475ECFB00012F4C /* SceneDelegate.swift */,
 				923D5D8D2475ECFB00012F4C /* ContentView.swift */,
