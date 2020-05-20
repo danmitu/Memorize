@@ -18,17 +18,19 @@ struct ContentView: View {
                     self.viewModel.choose(card: card)
                 }
             }
+            
         }
-            .padding()
-            .foregroundColor(.orange)
-            .font(.largeTitle)
+        .padding()
+        .foregroundColor(.orange)
+        .font(viewModel.cards.count <= 4 ? .largeTitle : .body)
+        .aspectRatio(3/2, contentMode: .fit)
     }
 }
 
 struct CardView: View {
     
     var card: MemoryGame<String>.Card
-        
+    
     var body: some View {
         ZStack {
             if card.isFaceUp {
