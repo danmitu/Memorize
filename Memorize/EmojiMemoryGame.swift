@@ -1,15 +1,15 @@
  //
-//  EmojiMemoryGame.swift
-//  Memorize
-//
-//  Created by Dan Mitu on 5/20/20.
-//
-
-import SwiftUI
+ //  EmojiMemoryGame.swift
+ //  Memorize
+ //
+ //  Created by Dan Mitu on 5/20/20.
+ //
+ 
+ import SwiftUI
  
  class EmojiMemoryGame: ObservableObject {
     
-  private var model: MemoryGame<String> = createMemoryGame()
+    @Published private var model: MemoryGame<String> = createMemoryGame()
     
     static func createMemoryGame() -> MemoryGame<String> {
         let emojis = ["👻", "🎃", "🤡"]
