@@ -12,15 +12,28 @@ struct EmojiMemoryGameView: View {
     @ObservedObject var viewModel: EmojiMemoryGame
     
     var body: some View {
+        NavigationView {
+            content
+                .navigationBarTitle(
+                    Text(viewModel.title),
+                    displayMode: .inline)
+                .navigationBarItems(
+                    leading: Button("New Game") { self.viewModel.resetGame() },
+                    trailing: Text("\(viewModel.score)"))
+                .padding()
+        }
+    }
+    
+    var content: some View {
         Grid(viewModel.cards) { card in
             CardView(card: card).onTapGesture {
                 self.viewModel.choose(card: card)
             }
-        .padding(5)
+            .padding(5)
+            .foregroundColor(self.viewModel.mainColor)
         }
-        .padding()
-        .foregroundColor(.orange)
     }
+    
 }
 
 struct CardView: View {
@@ -45,7 +58,6 @@ struct CardView: View {
                 if !card.isMatched {
                     RoundedRectangle(cornerRadius: self.cornerRadius).fill()
                 }
-                
             }
         }
         .font(Font.system(size: fontSize(for: size)))
