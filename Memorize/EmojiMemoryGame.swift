@@ -11,7 +11,7 @@
     
     @Published private var model: MemoryGame<String> = createMemoryGame()
     
-    static func createMemoryGame() -> MemoryGame<String> {
+    private static func createMemoryGame() -> MemoryGame<String> {
         let emojis = ["👻", "🎃", "🤡"]
         return MemoryGame<String>(numberOfPairsOfCards: emojis.count) { emojis[$0]
         }

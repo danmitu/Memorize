@@ -16,7 +16,7 @@ struct EmojiMemoryGameView: View {
             CardView(card: card).onTapGesture {
                 self.viewModel.choose(card: card)
             }
-        .padding(5)
+            .padding(5)
         }
         .padding()
         .foregroundColor(.orange)
@@ -33,29 +33,25 @@ struct CardView: View {
         }
     }
     
-    func body(for size: CGSize) -> some View {
-        ZStack {
-            if self.card.isFaceUp {
-                RoundedRectangle(cornerRadius: self.cornerRadius)
-                    .fill(Color.white)
-                RoundedRectangle(cornerRadius: self.cornerRadius)
-                    .stroke(lineWidth: self.edgeLineWidth)
+    @ViewBuilder
+    private func body(for size: CGSize) -> some View {
+        if card.isFaceUp || !card.isMatched {
+            ZStack {
+                Pie(startAngle: Angle.degrees(0-90),
+                    endAngle: Angle.degrees(110-90),
+                    clockwise: true)
+                    .padding(5)
+                    .opacity(0.4)
                 Text(self.card.content)
-            } else {
-                if !card.isMatched {
-                    RoundedRectangle(cornerRadius: self.cornerRadius).fill()
-                }
-                
+                    .font(Font.system(size: fontSize(for: size)))
             }
+            .cardify(isFaceUp: card.isFaceUp)
         }
-        .font(Font.system(size: fontSize(for: size)))
     }
     
     // MARK: - Drawing Constants
     
-    let cornerRadius: CGFloat = 10.0
-    let edgeLineWidth: CGFloat = 3
-    let fontScaleFactor: CGFloat = 0.75
+    private let fontScaleFactor: CGFloat = 0.7
     
     func fontSize(for size: CGSize) -> CGFloat {
         min(size.width, size.height) * self.fontScaleFactor
@@ -65,6 +61,8 @@ struct CardView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiMemoryGameView(viewModel: EmojiMemoryGame())
+        let game = EmojiMemoryGame()
+        game.choose(card: game.cards.first!)
+        return EmojiMemoryGameView(viewModel: game)
     }
 }
